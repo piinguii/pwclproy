@@ -24,7 +24,7 @@ const fetchWithToken = async (endpoint, options = {}) => {
 };
 
 // ==============================
-// 👤 User
+// User
 // ==============================
 
 const user = {
@@ -63,7 +63,7 @@ const user = {
 };
 
 // ==============================
-// 🧾 Clients
+// Clients
 // ==============================
 
 const clients = {
@@ -89,7 +89,7 @@ const clients = {
 };
 
 // ==============================
-// 📂 Projects
+// Projects
 // ==============================
 
 const projects = {
@@ -111,7 +111,7 @@ const projects = {
 };
 
 // ==============================
-// 📄 Delivery Notes
+// Delivery Notes
 // ==============================
 
 const deliveryNotes = {
@@ -152,7 +152,7 @@ const deliveryNotes = {
 };
 
 // ==============================
-// 🚀 Export agrupado
+// Export agrupado
 // ==============================
 
 const api = {

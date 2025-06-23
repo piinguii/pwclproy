@@ -34,9 +34,14 @@ export default function HubLayout({ children }) {
 
   return (
     <div className="flex min-h-screen bg-gray-50">
-      <Sidebar />
-      <div className="flex flex-col flex-1">
+      <Sidebar /> {/* Sidebar fijo */}
+
+      {/* Contenedor para navbar + contenido con margen izquierdo */}
+      <div className="flex flex-col flex-1 ml-64 min-h-screen">
+        {/* Navbar ocupa todo el ancho restante y sticky */}
         <Navbar />
+
+        {/* Providers y contenido */}
         <ClientsProvider>
           <ProjectsProvider>
             <DeliveryNotesProvider>

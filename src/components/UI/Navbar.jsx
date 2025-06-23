@@ -1,3 +1,5 @@
+"use client";
+
 import { useState, useEffect } from "react";
 import LocalStorageManager from "@/utils/localStorage";
 import { useRouter } from "next/navigation";
@@ -19,8 +21,8 @@ const Navbar = () => {
         });
         if (!response.ok) throw new Error("Failed to fetch user");
         const userData = await response.json();
-        setUserEmail(userData.email); // or set whole user if you want
-        LocalStorageManager.setUser(userData); // Optionally cache in localStorage
+        setUserEmail(userData.email);
+        LocalStorageManager.setUser(userData);
       } catch (err) {
         console.error("Error fetching user data:", err);
         setUserEmail(null);
@@ -36,17 +38,28 @@ const Navbar = () => {
   };
 
   return (
-    <header>
-      {/* ... */}
-      <div>
-        {userEmail ? (
-          <>
-            <span>Hello, {userEmail}</span>
-            <button onClick={handleLogout}>Logout</button>
-          </>
-        ) : (
-          <span>Not authenticated</span>
-        )}
+    <header className="bg-white border-b shadow-md sticky top-0 z-50">
+      <div className="max-w-7xl mx-auto flex justify-between items-center px-8 py-4 gap-8">
+
+        <div className="flex items-center gap-6">
+          {userEmail ? (
+            <>
+              <span className="text-gray-700 font-medium whitespace-nowrap">
+                Hola, {userEmail}
+              </span>
+              <button
+                onClick={handleLogout}
+                className="px-5 py-2 bg-red-600 hover:bg-red-700 text-white rounded-md transition"
+              >
+                Cerrar sesión
+              </button>
+            </>
+          ) : (
+            <span className="text-gray-400 italic select-none whitespace-nowrap">
+              No autenticado
+            </span>
+          )}
+        </div>
       </div>
     </header>
   );

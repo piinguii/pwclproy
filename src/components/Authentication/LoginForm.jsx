@@ -7,6 +7,7 @@ import Button from "@/components/UI/Button";
 import api from "@/utils/apiService";
 import LocalStorage from "@/utils/localStorage";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 const LoginForm = () => {
   const router = useRouter();
@@ -66,6 +67,17 @@ const LoginForm = () => {
           <Button type="submit" className="w-full mt-4">
             Iniciar sesión
           </Button>
+          
+          <p className="text-sm text-gray-500">
+            ¿No tienes cuenta?{" "}
+            <Link
+              href="/auth/register"
+              className="text-gray-800 hover:text-gray-600 transition-colors duration-200"
+            >
+            Regístrate
+            </Link>
+          </p>
+       
         </form>
       </div>
     </div>
