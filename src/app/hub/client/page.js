@@ -61,6 +61,8 @@ const ClientPage = () => {
     }
   };
 
+  
+
   return (
     <div className="container mx-auto p-6">
       {error && <p className="text-red-600 mb-4">{error}</p>}

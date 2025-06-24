@@ -5,13 +5,15 @@ import projectSchema from "@/utils/validation/projectSchema";
 import Input from "@/components/UI/Input";
 import Button from "@/components/UI/Button";
 
-const ProjectsForm = ({ formData = {}, onSubmit, clients = [] }) => {
+const ProjectsForm = ({ formData = {}, onSubmit, handleChange, clients = [] }) => {
   const isEditing = Boolean(formData._id);
+
+  
 
   const formik = useFormik({
     initialValues: {
       name: formData.name || "",
-      description: formData.description || "",
+      notes: formData.notes || "",
       clientId: formData.clientId || "",
     },
     validationSchema: projectSchema,
@@ -33,12 +35,12 @@ const ProjectsForm = ({ formData = {}, onSubmit, clients = [] }) => {
       />
 
       <Input
-        name="description"
+        name="notes"
         label="Descripción"
-        value={formik.values.description}
+        value={formik.values.notes}
         onChange={formik.handleChange}
         onBlur={formik.handleBlur}
-        error={formik.touched.description && formik.errors.description ? formik.errors.description : null}
+        error={formik.touched.notes && formik.errors.notes ? formik.errors.notes : null}
         className="resize-none"
       />
 

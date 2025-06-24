@@ -9,6 +9,7 @@ const ClientsForm = ({ initialData = {}, onSubmit }) => {
   const isEditing = Boolean(initialData._id);
 
   const formik = useFormik({
+    enableReinitialize: true, // Muy importante para que el form actualice al cambiar initialData
     initialValues: {
       name: initialData.name || "",
       cif: initialData.cif || "",
@@ -26,10 +27,7 @@ const ClientsForm = ({ initialData = {}, onSubmit }) => {
   });
 
   return (
-    <form
-      onSubmit={formik.handleSubmit}
-      className="flex flex-col gap-5 max-w-xl mx-auto"
-    >
+    <form onSubmit={formik.handleSubmit} className="flex flex-col gap-5 max-w-xl mx-auto">
       <Input
         name="name"
         label="Nombre"
@@ -38,7 +36,6 @@ const ClientsForm = ({ initialData = {}, onSubmit }) => {
         onBlur={formik.handleBlur}
         error={formik.touched.name && formik.errors.name ? formik.errors.name : null}
       />
-
       <Input
         name="cif"
         label="CIF"
@@ -47,7 +44,6 @@ const ClientsForm = ({ initialData = {}, onSubmit }) => {
         onBlur={formik.handleBlur}
         error={formik.touched.cif && formik.errors.cif ? formik.errors.cif : null}
       />
-
       <Input
         name="street"
         label="Calle"
@@ -56,7 +52,6 @@ const ClientsForm = ({ initialData = {}, onSubmit }) => {
         onBlur={formik.handleBlur}
         error={formik.touched.street && formik.errors.street ? formik.errors.street : null}
       />
-
       <Input
         name="number"
         label="Número"
@@ -66,7 +61,6 @@ const ClientsForm = ({ initialData = {}, onSubmit }) => {
         onBlur={formik.handleBlur}
         error={formik.touched.number && formik.errors.number ? formik.errors.number : null}
       />
-
       <Input
         name="postal"
         label="Código Postal"
@@ -76,7 +70,6 @@ const ClientsForm = ({ initialData = {}, onSubmit }) => {
         onBlur={formik.handleBlur}
         error={formik.touched.postal && formik.errors.postal ? formik.errors.postal : null}
       />
-
       <Input
         name="city"
         label="Ciudad"
@@ -85,7 +78,6 @@ const ClientsForm = ({ initialData = {}, onSubmit }) => {
         onBlur={formik.handleBlur}
         error={formik.touched.city && formik.errors.city ? formik.errors.city : null}
       />
-
       <Input
         name="province"
         label="Provincia"
@@ -94,10 +86,7 @@ const ClientsForm = ({ initialData = {}, onSubmit }) => {
         onBlur={formik.handleBlur}
         error={formik.touched.province && formik.errors.province ? formik.errors.province : null}
       />
-
-      <Button type="submit">
-        {isEditing ? "Actualizar Cliente" : "Crear Cliente"}
-      </Button>
+      <Button type="submit">{isEditing ? "Actualizar Cliente" : "Crear Cliente"}</Button>
     </form>
   );
 };

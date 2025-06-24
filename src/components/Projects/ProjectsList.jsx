@@ -6,11 +6,13 @@ const ProjectsList = ({ projects }) => {
       <ul className="flex flex-col gap-4">
         {projects.map((project) => (
           <li key={project._id}>
-            <Link href={`/projects/${project._id}`}>
+            <Link href={`/hub/projects/${project._id}`}>
               <div className="border rounded p-4 hover:bg-gray-100 transition cursor-pointer">
                 <h3 className="text-lg font-bold">{project.name}</h3>
-                <p className="text-sm text-gray-700 mb-1">{project.description}</p>
+                <p className="text-sm text-gray-700 mb-1">{project.notes}</p>
                 <p className="text-xs text-gray-500">Cliente ID: {project.clientId}</p>
+                
+
               </div>
             </Link>
           </li>

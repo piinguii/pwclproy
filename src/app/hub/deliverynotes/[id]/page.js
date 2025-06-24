@@ -28,7 +28,7 @@ const DeliveryNoteDetailPage = () => {
 
   const fetchDeliveryNote = async (noteId) => {
     try {
-      const data = await api.deliveryNote.getOne(noteId);
+      const data = await api.deliveryNotes.getOne(noteId);
       setDeliveryNote(data);
       setError(null);
     } catch (err) {
@@ -39,28 +39,23 @@ const DeliveryNoteDetailPage = () => {
 
   const fetchProjects = async () => {
     try {
-      const data = await api.projects.get();
+      const data = await api.projects.getAll();
       setProjects(data);
     } catch (err) {
       console.error("Error cargando proyectos", err);
     }
   };
 
-  const updateDeliveryNote = async (e) => {
-    e.preventDefault();
+  // Nota: onSubmit en DeliveryNoteForm recibe el payload
+  const updateDeliveryNote = async (payload) => {
     try {
-      await api.deliveryNote.update(id, deliveryNote);
+      await api.deliveryNotes.update(id, payload);
       alert("Albarán actualizado");
-      fetchDeliveryNote(id);
+      fetchDeliveryNote(id); // refresca datos después de actualizar
     } catch (err) {
       setError("Error actualizando albarán");
       console.error(err);
     }
-  };
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setDeliveryNote((prev) => ({ ...prev, [name]: value }));
   };
 
   if (!deliveryNote) return <p>Cargando albarán...</p>;
@@ -73,7 +68,6 @@ const DeliveryNoteDetailPage = () => {
         projects={projects}
         deliveryNote={deliveryNote}
         onSubmit={updateDeliveryNote}
-        handleChange={handleChange}
       />
     </div>
   );

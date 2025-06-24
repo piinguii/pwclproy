@@ -1,3 +1,4 @@
+import Link from "next/link";
 import DownloadDeliveryNote from "./DownloadDeliveryNote";
 
 const DeliveryNotesList = ({ deliveryNotes }) => {
@@ -28,9 +29,15 @@ const DeliveryNotesList = ({ deliveryNotes }) => {
                 </p>
               </div>
 
-              {/* Botón Descargar */}
-              <div className="flex justify-end">
+              {/* Botones */}
+              <div className="flex justify-between">
                 <DownloadDeliveryNote noteId={note._id} />
+                <Link
+                  href={`/hub/deliverynotes/${note._id}`}
+                  className="ml-4 px-3 py-1 bg-blue-600 text-white rounded hover:bg-blue-700 transition"
+                >
+                  Editar
+                </Link>
               </div>
             </div>
           </li>

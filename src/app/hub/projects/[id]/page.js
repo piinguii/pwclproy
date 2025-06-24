@@ -46,10 +46,11 @@ const ProjectDetailPage = () => {
     }
   };
 
-  const updateProject = async (e) => {
-    e.preventDefault();
+  
+  const updateProject = async (updatedProject) => {
+    console.log("Payload que se envía:", updatedProject);
     try {
-      await api.projects.update(id, project);
+      await api.projects.update(id, updatedProject);
       alert("Proyecto actualizado");
       fetchProject(id);
     } catch (err) {
@@ -58,6 +59,7 @@ const ProjectDetailPage = () => {
     }
   };
 
+  // Manejador para actualizar el estado local del proyecto conforme cambian inputs
   const handleChange = (e) => {
     const { name, value } = e.target;
     setProject((prev) => ({ ...prev, [name]: value }));
@@ -69,7 +71,13 @@ const ProjectDetailPage = () => {
     <div className="container mx-auto p-6">
       {error && <p className="text-red-600 mb-4">{error}</p>}
       <h2 className="text-xl font-bold mb-4">Editar Proyecto</h2>
-      <ProjectsForm clients={clients} formData={project} onSubmit={updateProject} handleChange={handleChange} />
+      {/* En ProjectsForm el onSubmit maneja el preventDefault y llama a updateProject con los datos */}
+      <ProjectsForm
+        clients={clients}
+        formData={project}
+        onSubmit={updateProject}
+        handleChange={handleChange}
+      />
     </div>
   );
 };
